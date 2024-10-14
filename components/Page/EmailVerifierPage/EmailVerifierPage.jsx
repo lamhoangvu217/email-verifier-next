@@ -121,7 +121,7 @@ function EmailVerifierPage() {
             margin: "16px 0"
           }}>
             <div>
-              <label htmlFor="column-input" style={{ fontWeight: "bold" }}>Column Input:</label>
+              <label htmlFor="column-input" style={{ fontWeight: "bold" }}>Column:</label>
             </div>
             <Input
               id="column-input"

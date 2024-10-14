@@ -58,7 +58,7 @@ const HowToUsePage = () => {
 
         <Typography.Title level={3}>Need Help?</Typography.Title>
         <Typography.Paragraph>
-          If you encounter any issues or have questions, feel free to reach out to our support team at <a href="mailto:support@example.com">support@example.com</a>.
+          If you encounter any issues or have questions, feel free to reach out to our support team at <a href="mailto:lambeobn@gmail.com">lambeobn@gmail.com</a>.
         </Typography.Paragraph>
       </div>
     </MainLayout>

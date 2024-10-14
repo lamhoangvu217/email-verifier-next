@@ -1,12 +1,5 @@
-import MainLayout from "@/components/layouts/MainLayout";
-import LandingPage from "../LandingPage/LandingPage";
 
 function HomePage() {
-  return (
-    <MainLayout>
-      <LandingPage />
-    </MainLayout>
-  )
+  return <></>
 }
-
 export default HomePage;
