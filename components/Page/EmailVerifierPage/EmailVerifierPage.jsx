@@ -229,8 +229,8 @@ function EmailVerifierPage() {
         <ins
           className="adsbygoogle"
           style={{ display: 'block' }}
-          data-ad-client="ca-pub-2028580628501260"  // Replace with your AdSense publisher ID
-          data-ad-slot="7503165700"           // Replace with your ad slot ID
+          data-ad-client={`ca-pub-${process.env.NEXT_PUBLIC_URL_GG_ADS_CODE}`}
+          data-ad-slot={`${process.env.NEXT_PUBLIC_URL_GG_ADS_AD_SLOT}`}
           data-ad-format="auto"
           data-full-width-responsive="true"
         ></ins>
