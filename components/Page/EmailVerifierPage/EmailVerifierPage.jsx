@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Button, Flex, Form, Input, List, Typography, Upload, Spin } from "antd";
+import React, { useEffect, useState } from "react";
+import { Button, Flex, Form, Input, List, Typography, Upload, Spin, Grid } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import toast from "react-hot-toast";
 import * as XLSX from "xlsx"; // Import the xlsx library
@@ -14,7 +14,7 @@ function EmailVerifierPage() {
   const [emailsRemoved, setEmailsRemoved] = useState(false);
   const [columnInput, setColumnInput] = useState(""); // State for column input
   const [loading, setLoading] = useState(false); // State to manage loading
-
+  const { xs } = Grid.useBreakpoint();
   const validateEmail = (email, isMultiEmail = false) => {
     let re =
       /^(([^<>()\\,;:\s@"]+(\.[^<>().,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -93,7 +93,11 @@ function EmailVerifierPage() {
     a.click();
     window.URL.revokeObjectURL(url);
   };
-
+  useEffect(() => {
+    if (window?.adsbygoogle) {
+      window.adsbygoogle.push({});
+    }
+  }, []);
   return (
     <MainLayout>
       <div
@@ -101,7 +105,8 @@ function EmailVerifierPage() {
           width: "100%",
           height: "100vh",
           backgroundColor: "white",
-          borderRadius: "16px"
+          borderRadius: "16px",
+          padding: xs ? "0 24px" : 0
         }}
       >
         <div
@@ -117,9 +122,9 @@ function EmailVerifierPage() {
           }}
         >
           <h1 style={{ fontSize: "32px" }}>Email Verifier</h1>
-          <Flex align="center" gap={16} style={{
+          <Flex align="center" vertical={xs} gap={16} style={{
             margin: "16px 0"
-          }}>
+          }} >
             <div>
               <label htmlFor="column-input" style={{ fontWeight: "bold" }}>Column:</label>
             </div>
@@ -221,6 +226,14 @@ function EmailVerifierPage() {
             style={{ maxHeight: "300px", overflowY: "auto" }}
           />
         </div>
+        <ins
+          className="adsbygoogle"
+          style={{ display: 'block' }}
+          data-ad-client="ca-pub-2028580628501260"  // Replace with your AdSense publisher ID
+          data-ad-slot="7503165700"           // Replace with your ad slot ID
+          data-ad-format="auto"
+          data-full-width-responsive="true"
+        ></ins>
       </div>
     </MainLayout>
   );
