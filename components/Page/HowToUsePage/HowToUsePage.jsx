@@ -56,7 +56,7 @@ const HowToUsePage = () => {
           </Typography.Paragraph>
         </Space>
 
-        <Typography.Title level={3}>Need Help?</Typography.Title>
+        <Typography.Title level={3}>Need Help??</Typography.Title>
         <Typography.Paragraph>
           If you encounter any issues or have questions, feel free to reach out to our support team at <a href="mailto:lambeobn@gmail.com">lambeobn@gmail.com</a>.
         </Typography.Paragraph>
