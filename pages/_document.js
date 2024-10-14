@@ -5,6 +5,11 @@ import Document, { Head, Html, Main, NextScript } from 'next/document';
 const MyDocument = () => (
   <Html lang="en">
     <Head>
+        <meta name="description" content="This is a description of my Next.js app" />
+        <meta name="robots" content="index,follow" />
+        <meta property="og:title" content="My Next.js App" />
+        <meta property="og:description" content="This is a description of my Next.js app" />
+        <meta property="og:url" content="https://yourapp.com" />
       <meta name="google-adsense-account" content={`ca-pub-${process.env.NEXT_PUBLIC_URL_GG_ADS_CODE}`} />
       <script async src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-${process.env.NEXT_PUBLIC_URL_GG_ADS_CODE}`} crossorigin="anonymous"></script>
     </Head>
