@@ -15,9 +15,9 @@ const AboutPage = () => {
           boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
         }}
       >
-        <Typography.Title level={2}>About the Email Verifier</Typography.Title>
+        <Typography.Title level={2}>About Emailery</Typography.Title>
         <Typography.Paragraph>
-          The Email Verifier is a web application designed to help users verify
+          Emailery is a web application designed to help users verify
           the validity of email addresses efficiently. Whether you have a list
           of emails or need to check individual addresses, our tool offers a
           simple and intuitive interface to meet your needs.

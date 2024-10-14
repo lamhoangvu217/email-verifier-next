@@ -11,6 +11,11 @@ export const routers = [
   },
   {
     key: "3",
+    label: "Pricing",
+    link: "/pricing",
+  },
+  {
+    key: "4",
     label: "About Emailery",
     link: "/about",
   },

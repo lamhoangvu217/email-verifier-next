@@ -1,5 +1,5 @@
 import { routers } from '@/constants/router';
-import { Layout, Menu } from 'antd';
+import { Button, Flex, Layout, Menu } from 'antd';
 import { useRouter, usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 const { Header, Content, Footer } = Layout;
@@ -7,8 +7,6 @@ function MainLayout({ children }) {
   const router = useRouter();
   const pathname = usePathname()
   const [selectedKey, setSelectedKey] = useState('');
-
-  // Sync selectedKey with the current route
   useEffect(() => {
     const currentRoute = routers.find((route) => route.link === pathname);
     if (currentRoute) {
@@ -17,7 +15,13 @@ function MainLayout({ children }) {
   }, [pathname]);
 
   const handleClick = (link) => {
-    router.push(link); // Navigate to the selected page
+    router.push(link);
+  };
+  const handleLogin = () => {
+    router.push('/login');
+  };
+  const handleSignUp = () => {
+    router.push('/sign-up');
   };
   return (
     <Layout>
@@ -38,7 +42,7 @@ function MainLayout({ children }) {
         <Menu
           theme="dark"
           mode="horizontal"
-          selectedKeys={[selectedKey]} // Set the selected item based on state
+          selectedKeys={[selectedKey]}
           style={{ flex: 1, minWidth: 0 }}
         >
           {routers.map((route) => (
@@ -47,6 +51,23 @@ function MainLayout({ children }) {
             </Menu.Item>
           ))}
         </Menu>
+        <Flex gap={8}>
+          <Button
+            type="primary"
+            style={{ marginLeft: 'auto' }}
+            onClick={handleLogin}
+          >
+            Login
+          </Button>
+          <Button
+            type="text"
+            style={{ marginLeft: 'auto', color: "white" }}
+            onClick={handleSignUp}
+          >
+            Sign up
+          </Button>
+        </Flex>
+
       </Header>
       <Content>
         <div
