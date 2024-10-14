@@ -1,17 +1,31 @@
-import React from 'react';
-import { createCache, extractStyle, StyleProvider } from '@ant-design/cssinjs';
-import Document, { Head, Html, Main, NextScript } from 'next/document';
+import React from "react";
+import { createCache, extractStyle, StyleProvider } from "@ant-design/cssinjs";
+import Document, { Head, Html, Main, NextScript } from "next/document";
+import { meta } from "@/constants/meta";
 
 const MyDocument = () => (
   <Html lang="en">
     <Head>
-        <meta name="description" content="This is a description of my Next.js app" />
-        <meta name="robots" content="index,follow" />
-        <meta property="og:title" content="My Next.js App" />
-        <meta property="og:description" content="This is a description of my Next.js app" />
-        <meta property="og:url" content="https://yourapp.com" />
-      <meta name="google-adsense-account" content={`ca-pub-${process.env.NEXT_PUBLIC_URL_GG_ADS_CODE}`} />
-      <script async src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-${process.env.NEXT_PUBLIC_URL_GG_ADS_CODE}`} crossorigin="anonymous"></script>
+      <meta
+        name="description"
+        content={meta.description}
+      />
+      <meta name="robots" content="index,follow" />
+      <meta property="og:title" content={meta.title} />
+      <meta
+        property="og:description"
+        content={meta.description}
+      />
+      <meta property="og:url" content={meta.webUrl} />
+      <meta
+        name="google-adsense-account"
+        content={`ca-pub-${process.env.NEXT_PUBLIC_URL_GG_ADS_CODE}`}
+      />
+      <script
+        async
+        src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-${process.env.NEXT_PUBLIC_URL_GG_ADS_CODE}`}
+        crossOrigin="anonymous"
+      ></script>
     </Head>
     <body>
       <Main />
