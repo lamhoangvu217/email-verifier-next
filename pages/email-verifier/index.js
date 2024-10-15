@@ -1,9 +1,10 @@
 import EmailVerifierPage from "@/components/Page/EmailVerifierPage/EmailVerifierPage";
 import { meta } from "@/constants/meta";
+import axios from "axios";
 import Head from "next/head";
 import React from "react";
 
-function EmailVerifier() {
+function EmailVerifier({ userDetail }) {
   return (
     <>
       <Head>
@@ -14,9 +15,8 @@ function EmailVerifier() {
         <meta property="og:url" content={meta.webUrl} />
         <meta property="og:type" content="website" />
       </Head>
-      <EmailVerifierPage />
+      <EmailVerifierPage userDetail={userDetail} />
     </>
   );
 }
-
 export default EmailVerifier;

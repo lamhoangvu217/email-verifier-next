@@ -4,10 +4,15 @@ import { UploadOutlined } from "@ant-design/icons";
 import toast from "react-hot-toast";
 import * as XLSX from "xlsx"; // Import the xlsx library
 import MainLayout from "@/components/layouts/MainLayout";
+import { userDetailsState } from "@/recoil/atom";
+import { fetchUserDetailsSelector } from "@/recoil/selector";
+import { useRecoilState, useRecoilValue } from "recoil";
 
 const { TextArea } = Input;
 
 function EmailVerifierPage() {
+  const [userDetails, setUserDetails] = useRecoilState(userDetailsState);
+  const fetchedUserDetails = useRecoilValue(fetchUserDetailsSelector);
   const [invalidEmails, setInvalidEmails] = useState([]);
   const [validEmails, setValidEmails] = useState([]);
   const [form] = Form.useForm();
@@ -98,6 +103,13 @@ function EmailVerifierPage() {
       window.adsbygoogle.push({});
     }
   }, []);
+
+  useEffect(() => {
+    setUserDetails(fetchedUserDetails);
+  }, [fetchedUserDetails, setUserDetails]);
+
+  // console.log(userDetails);
+  
   return (
     <MainLayout>
       <div

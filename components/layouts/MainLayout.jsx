@@ -1,7 +1,7 @@
 import { routers } from '@/constants/router';
 import { Button, Flex, Layout, Menu } from 'antd';
-import { useRouter, usePathname } from 'next/navigation';
-import React, { useEffect, useState } from 'react'
+import { usePathname, useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 const { Header, Content, Footer } = Layout;
 function MainLayout({ children }) {
   const router = useRouter();
@@ -13,7 +13,6 @@ function MainLayout({ children }) {
       setSelectedKey(currentRoute.key);
     }
   }, [pathname]);
-
   const handleClick = (link) => {
     router.push(link);
   };

@@ -1,16 +1,31 @@
 import MainLayout from "@/components/layouts/MainLayout"
 import { LockOutlined, MailOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Card, Form, Input, Typography } from "antd";
+import { Button, Card, Form, Input, message, Typography } from "antd";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 const { Title } = Typography;
 function SignUpPage() {
-  const onFinish = (values) => {
-    console.log('Success:', values);
-    message.success('Sign Up successful!');
-  };
-
-  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-    message.error('Sign Up failed, please check your input.');
+  const router = useRouter()
+  const [isLoading, setIsLoading] = useState(false)
+  const onRegister = async (values) => {
+    setIsLoading(true)
+    const register = await axios.post(`${process.env.NEXT_PUBLIC_URL_BASE}/api/register`,
+      {
+        email: values.email,
+        password: values.password,
+        username: values.username,
+        user_type: ""
+      }
+    ).then((res) => {
+      if (res.status === 200) {
+        message.success('Sign Up successfully!');
+        router.push("/login")
+      }
+    }).catch((err) => {
+      message.error(err?.response?.data?.message ? `Sign up error! ${err?.response?.data?.message}` : "Sign up error! Please try again later")
+    })
+    setIsLoading(false)
   };
   return (
     <MainLayout>
@@ -32,8 +47,7 @@ function SignUpPage() {
 
           <Form
             name="signup_form"
-            onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
+            onFinish={onRegister}
           >
             {/* Username Field */}
             <Form.Item
@@ -112,6 +126,7 @@ function SignUpPage() {
                 htmlType="submit"
                 size="large"
                 style={{ width: '100%' }}
+                loading={isLoading}
               >
                 Sign Up
               </Button>
