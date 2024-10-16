@@ -31,6 +31,12 @@ function MainLayout({ children }) {
     {
       key: '1',
       label: (
+        <div onClick={() => router.push("/account")}>Account Settings</div>
+      ),
+    },
+    {
+      key: '2',
+      label: (
         <div onClick={handleLogout}>Logout</div>
       ),
     },

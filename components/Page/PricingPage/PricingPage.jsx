@@ -2,7 +2,7 @@ import MainLayout from '@/components/layouts/MainLayout'
 import { pricingPlans } from '@/constants/pricing'
 import { userDetailsState } from '@/recoil/atom'
 import { CheckOutlined } from '@ant-design/icons'
-import { Button, Card, Col, message, Row } from 'antd'
+import { Button, Card, Col, message, Row, Tag } from 'antd'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import React from 'react'
@@ -40,6 +40,8 @@ function PricingPage() {
                   minHeight: '400px',
                 }}
               >
+                {userDetail?.user_type === "Pro" && <Tag color="green" style={{ marginBottom: "16px" }}>Current Plan</Tag>}
+                
                 <h2>{plan.price}</h2>
                 <ul style={{ listStyleType: 'none', padding: 0 }}>
                   {plan.features.map((feature, idx) => (
@@ -51,8 +53,8 @@ function PricingPage() {
                 </ul>
                 {userDetail ? (
                   <>
-                    {userDetail?.user_type === "Pro" ? <Button type="default" disabled size="large" style={{ marginTop: '140px' }} onClick={updatePlans}>
-                      Current Plan
+                    {userDetail?.user_type === "Pro" ? <Button type="default" size="large" style={{ marginTop: '140px' }} onClick={() => router.push("/account")}>
+                      Manage your plan
                     </Button> : <Button type="primary" size="large" style={{ marginTop: '140px' }} onClick={updatePlans}>
                       Upgrade to Pro
                     </Button>}
