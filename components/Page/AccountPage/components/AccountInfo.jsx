@@ -1,11 +1,13 @@
 import { userDetailsState } from '@/recoil/atom';
 import { MailOutlined, UserOutlined } from '@ant-design/icons';
-import { Button, Flex, Form, Input } from 'antd';
+import { Button, Flex, Form, Input, message } from 'antd';
+import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 
 function AccountInfo() {
-  const userDetail = useRecoilValue(userDetailsState);
+  const [isLoading, setIsLoading] = useState(false)
+  const [userDetail, setUserDetail] = useRecoilState(userDetailsState);
   const [mode, setMode] = useState("view")
   const [form] = Form.useForm()
   useEffect(() => {
@@ -16,6 +18,21 @@ function AccountInfo() {
       })
     }
   }, [userDetail])
+
+  const handleSaveAccountInfo = async () => {
+    setIsLoading(true)
+    const payload = await form.validateFields();
+    const update = await axios.post(`${process.env.NEXT_PUBLIC_URL_BASE}/api/user`, payload, {
+      withCredentials: true
+    }).then((res) => {
+      setUserDetail(res.data.user)
+      message.success(res?.data?.message)
+      setMode("view")
+    }).catch((err) => {
+      message.error("Update user error. Please try again")
+    })
+    setIsLoading(false)
+  }
   return (
     <div style={{
       width: "400px"
@@ -50,7 +67,7 @@ function AccountInfo() {
             prefix={<MailOutlined />}
             placeholder="Email"
             size="large"
-            disabled={mode === "view"}
+            disabled
           />
         </Form.Item>
 
@@ -62,7 +79,8 @@ function AccountInfo() {
               <Button
                 type="primary"
                 size="large"
-                htmlType='submit'
+                onClick={handleSaveAccountInfo}
+                loading={isLoading}
               >
                 Save
               </Button>
