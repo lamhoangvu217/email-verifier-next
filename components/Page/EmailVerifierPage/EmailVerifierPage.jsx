@@ -1,8 +1,10 @@
 import MainLayout from "@/components/layouts/MainLayout";
-import { UploadOutlined } from "@ant-design/icons";
-import { Button, Flex, Form, Grid, Input, List, Spin, Typography, Upload } from "antd";
+import { userDetailsState } from "@/recoil/atom";
+import { StarFilled, StarOutlined, UploadOutlined } from "@ant-design/icons";
+import { Badge, Button, Flex, Form, Grid, Input, List, Spin, Typography, Upload } from "antd";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { useRecoilValue } from "recoil";
 import * as XLSX from "xlsx"; // Import the xlsx library
 
 const { TextArea } = Input;
@@ -15,6 +17,9 @@ function EmailVerifierPage() {
   const [columnInput, setColumnInput] = useState(""); // State for column input
   const [loading, setLoading] = useState(false); // State to manage loading
   const { xs } = Grid.useBreakpoint();
+  const userDetail = useRecoilValue(userDetailsState);
+  const isProUser = userDetail?.user_type === "Pro"
+
   const validateEmail = (email, isMultiEmail = false) => {
     let re =
       /^(([^<>()\\,;:\s@"]+(\.[^<>().,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -95,7 +100,7 @@ function EmailVerifierPage() {
   };
   useEffect(() => {
     if (window?.adsbygoogle) {
-      window.adsbygoogle.push({});
+      window?.adsbygoogle?.push({});
     }
   }, []);
   return (
@@ -128,18 +133,29 @@ function EmailVerifierPage() {
             <div>
               <label htmlFor="column-input" style={{ fontWeight: "bold" }}>Column:</label>
             </div>
-            <Input
+            {isProUser ? <Input
               id="column-input"
               value={columnInput}
               onChange={(e) => setColumnInput(e.target.value)}
               placeholder="Enter column letter (A, B, ...)"
               style={{ width: "200px" }}
-            />
+            /> : <Badge count={<StarFilled style={{ color: '#f1c40f' }} />}>
+              <Input
+                id="column-input"
+                value={columnInput}
+                onChange={(e) => setColumnInput(e.target.value)}
+                placeholder="Enter column letter (A, B, ...)"
+                style={{ width: "200px" }}
+                disabled={!isProUser}
+              />
+            </Badge>
+            }
+
 
             <Upload beforeUpload={handleUpload} showUploadList={false}>
               <Button
                 icon={<UploadOutlined />}
-                disabled={!columnInput} // Disable button if no column letter is entered
+                disabled={!columnInput}
               >
                 Upload Excel File
               </Button>
