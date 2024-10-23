@@ -9,12 +9,14 @@ function AccountInfo() {
   const [isLoading, setIsLoading] = useState(false)
   const [userDetail, setUserDetail] = useRecoilState(userDetailsState);
   const [mode, setMode] = useState("view")
-  const [form] = Form.useForm()
+  const [form] = Form.useForm();
+
   useEffect(() => {
     if (userDetail) {
       form.setFieldsValue({
         username: userDetail?.username,
-        email: userDetail?.email
+        email: userDetail?.email,
+        avatar: userDetail?.avatar
       })
     }
   }, [userDetail])
@@ -50,6 +52,18 @@ function AccountInfo() {
           <Input
             prefix={<UserOutlined />}
             placeholder="Username"
+            size="large"
+            disabled={mode === "view"}
+          />
+        </Form.Item>
+
+        {/* Avatar Field */}
+        <Form.Item
+          name="avatar"
+        >
+          <Input
+            prefix={<UserOutlined />}
+            placeholder="Your avatar link"
             size="large"
             disabled={mode === "view"}
           />
@@ -95,7 +109,7 @@ function AccountInfo() {
 
           </Form.Item>
         }
-        {mode === "view" && 
+        {mode === "view" &&
           <Button
             type="primary"
             size="large"

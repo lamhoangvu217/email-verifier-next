@@ -2,8 +2,6 @@ import MainLayout from "@/components/layouts/MainLayout";
 import { Tabs } from "antd";
 import AccountInfo from "./components/AccountInfo";
 import Plans from "./components/Plans";
-import { useRecoilValue } from "recoil";
-import { userDetailsState } from "@/recoil/atom";
 
 const tabs = [
   {
@@ -18,7 +16,6 @@ const tabs = [
   }
 ]
 function AccountPage() {
-  
   return (  
     <MainLayout>
       <Tabs

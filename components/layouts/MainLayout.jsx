@@ -21,6 +21,7 @@ function MainLayout({ children }) {
       if (res.status === 200) {
         message.success(res.data.message ? res.data.message : "Logout Successfully!");
         setUserDetail(null)
+        router.push("/")
       }
     }).catch((err) => {
       console.log("err", err);
@@ -103,7 +104,20 @@ function MainLayout({ children }) {
         {userDetail
           ?
           <Dropdown menu={{ items: avatarDropdownMenu }}>
-            <Avatar style={{ backgroundColor: '#fde3cf', color: '#f56a00' }}>U</Avatar>
+            <div style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+              gap: "8px",
+              cursor: "pointer"
+            }}>
+              {userDetail?.avatar ? <Avatar src={userDetail?.avatar} />: <Avatar style={{ backgroundColor: '#fde3cf', color: '#f56a00' }}>{userDetail?.username?.charAt(0)}</Avatar>}
+              
+              <span style={{
+                color: "white"
+              }}>{userDetail?.username}</span>
+            </div>
+
           </Dropdown>
           :
           <Flex gap={8}>
