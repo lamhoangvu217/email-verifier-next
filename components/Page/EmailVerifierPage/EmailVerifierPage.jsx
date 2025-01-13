@@ -117,7 +117,6 @@ function EmailVerifierPage() {
             margin: "0 auto",
           }}
         >
-          {/* <h1 style={{ fontSize: "32px" }}>Email Verifier</h1> */}
           <Flex align="center" vertical={xs} gap={16} style={{
             margin: "16px 0"
           }} >

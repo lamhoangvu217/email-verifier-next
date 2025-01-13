@@ -6,7 +6,7 @@ function EmailVerifier() {
   return (
     <>
       <Head>
-        <title>Email Verifier</title>
+        <title>Emailery - Clean your email list</title>
         <meta name="description" content={meta.description} />
         <meta property="og:title" content={meta.title} />
         <meta property="og:description" content={meta.description} />
