@@ -11,8 +11,8 @@ export const routers = [
   },
   {
     key: "3",
-    label: "Pricing",
-    link: "/pricing",
+    label: "Plans",
+    link: "/plans",
   },
   {
     key: "4",

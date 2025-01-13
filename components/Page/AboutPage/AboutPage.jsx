@@ -11,7 +11,7 @@ const AboutPage = () => {
           height: "100vh",
           backgroundColor: "white",
           borderRadius: "16px",
-          padding: "24px",
+          padding: "24px 90px",
           boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
         }}
       >

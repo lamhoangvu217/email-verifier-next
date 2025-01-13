@@ -1,10 +1,8 @@
 import MainLayout from "@/components/layouts/MainLayout";
-import { userDetailsState } from "@/recoil/atom";
-import { StarFilled, StarOutlined, UploadOutlined } from "@ant-design/icons";
-import { Badge, Button, Flex, Form, Grid, Input, List, Spin, Typography, Upload } from "antd";
-import { useEffect, useState } from "react";
+import { UploadOutlined } from "@ant-design/icons";
+import { Button, Flex, Form, Grid, Input, List, Spin, Typography, Upload } from "antd";
+import { useState } from "react";
 import toast from "react-hot-toast";
-import { useRecoilValue } from "recoil";
 import * as XLSX from "xlsx"; // Import the xlsx library
 
 const { TextArea } = Input;
@@ -17,8 +15,6 @@ function EmailVerifierPage() {
   const [columnInput, setColumnInput] = useState(""); // State for column input
   const [loading, setLoading] = useState(false); // State to manage loading
   const { xs } = Grid.useBreakpoint();
-  const userDetail = useRecoilValue(userDetailsState);
-  const isProUser = userDetail?.user_type === "Pro"
 
   const validateEmail = (email, isMultiEmail = false) => {
     let re =
@@ -98,11 +94,6 @@ function EmailVerifierPage() {
     a.click();
     window.URL.revokeObjectURL(url);
   };
-  useEffect(() => {
-    if (window?.adsbygoogle) {
-      window?.adsbygoogle?.push({});
-    }
-  }, []);
   return (
     <MainLayout>
       <div
@@ -126,32 +117,20 @@ function EmailVerifierPage() {
             margin: "0 auto",
           }}
         >
-          <h1 style={{ fontSize: "32px" }}>Email Verifier</h1>
+          {/* <h1 style={{ fontSize: "32px" }}>Email Verifier</h1> */}
           <Flex align="center" vertical={xs} gap={16} style={{
             margin: "16px 0"
           }} >
             <div>
               <label htmlFor="column-input" style={{ fontWeight: "bold" }}>Column:</label>
             </div>
-            {isProUser ? <Input
+            <Input
               id="column-input"
               value={columnInput}
               onChange={(e) => setColumnInput(e.target.value)}
               placeholder="Enter column letter (A, B, ...)"
               style={{ width: "200px" }}
-            /> : <Badge count={<StarFilled style={{ color: '#f1c40f' }} />}>
-              <Input
-                id="column-input"
-                value={columnInput}
-                onChange={(e) => setColumnInput(e.target.value)}
-                placeholder="Enter column letter (A, B, ...)"
-                style={{ width: "200px" }}
-                disabled={!isProUser}
-              />
-            </Badge>
-            }
-
-
+            />
             <Upload beforeUpload={handleUpload} showUploadList={false}>
               <Button
                 icon={<UploadOutlined />}

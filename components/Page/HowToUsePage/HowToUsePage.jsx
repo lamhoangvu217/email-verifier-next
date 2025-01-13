@@ -11,8 +11,8 @@ const HowToUsePage = () => {
           height: "100vh",
           backgroundColor: "white",
           borderRadius: "16px",
-          padding: "24px",
           boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
+          padding: "24px 92px"
         }}
       >
         <Typography.Title level={2}>How to Use the Email Verifier</Typography.Title>

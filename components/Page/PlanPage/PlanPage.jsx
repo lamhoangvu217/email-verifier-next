@@ -1,29 +1,9 @@
 import MainLayout from '@/components/layouts/MainLayout'
 import { pricingPlans } from '@/constants/pricing'
-import { userDetailsState } from '@/recoil/atom'
 import { CheckOutlined } from '@ant-design/icons'
-import { Button, Card, Col, message, Row, Tag } from 'antd'
-import axios from 'axios'
-import { useRouter } from 'next/navigation'
-import React from 'react'
-import { useRecoilState } from 'recoil'
+import { Card, Col, Row, Tag } from 'antd'
 
-function PricingPage() {
-  const router = useRouter()
-  const [userDetail, setUserDetail] = useRecoilState(userDetailsState);
-  const updatePlans = async () => {
-    const update = await axios.post(`${process.env.NEXT_PUBLIC_URL_BASE}/api/update-plans`, {
-      user_type: "Pro"
-    }, {
-      withCredentials: true
-    }).then((res) => {
-      setUserDetail(res.data.user)
-    }).catch((err) => {
-      console.log("err", err);
-
-      message.error("Upgrade Plans error. Please try again")
-    })
-  }
+function PlanPage() {
   return (
     <MainLayout>
       <div style={{ padding: '50px', backgroundColor: '#f0f2f5', borderRadius: "16px", height: "100vh", }}>
@@ -40,7 +20,7 @@ function PricingPage() {
                   minHeight: '400px',
                 }}
               >
-                {userDetail?.user_type === "Pro" && <Tag color="green" style={{ marginBottom: "16px" }}>Current Plan</Tag>}
+                <Tag color="green" style={{ marginBottom: "16px" }}>Current Plan</Tag>
                 
                 <h2>{plan.price}</h2>
                 <ul style={{ listStyleType: 'none', padding: 0 }}>
@@ -51,7 +31,7 @@ function PricingPage() {
                     </li>
                   ))}
                 </ul>
-                {userDetail ? (
+                {/* {userDetail ? (
                   <>
                     {userDetail?.user_type === "Pro" ? <Button type="default" size="large" style={{ marginTop: '140px' }} onClick={() => router.push("/account")}>
                       Manage your plan
@@ -62,7 +42,7 @@ function PricingPage() {
                 ) : <Button type="primary" size="large" style={{ marginTop: '140px' }} onClick={() => router.push("/sign-up")}>
                   Get started
                 </Button>
-                }
+                } */}
 
               </Card>
             </Col>
@@ -73,4 +53,4 @@ function PricingPage() {
   )
 }
 
-export default PricingPage
+export default PlanPage

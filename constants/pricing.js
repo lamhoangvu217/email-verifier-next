@@ -1,6 +1,6 @@
 export const pricingPlans = [
     {
-      title: 'Pro',
+      title: 'Free',
       price: 'Free Forever',
       features: ['Excel File Upload']
     },
